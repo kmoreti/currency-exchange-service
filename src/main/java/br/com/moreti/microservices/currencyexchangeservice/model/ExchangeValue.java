@@ -1,21 +1,32 @@
 package br.com.moreti.microservices.currencyexchangeservice.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class ExchangeValue {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "currency_from")
     private String from;
+
+    @Column(name = "currency_to")
     private String to;
-    private BigDecimal covnersionMultiple;
+
+    private BigDecimal conversionMultiple;
+    private int port;
 
     public ExchangeValue() {
     }
 
-    public ExchangeValue(Long id, String from, String to, BigDecimal covnersionMultiple) {
+    public ExchangeValue(Long id, String from, String to, BigDecimal conversionMultiple) {
         this.id = id;
         this.from = from;
         this.to = to;
-        this.covnersionMultiple = covnersionMultiple;
+        this.conversionMultiple = conversionMultiple;
     }
 
     public Long getId() {
@@ -30,7 +41,15 @@ public class ExchangeValue {
         return to;
     }
 
-    public BigDecimal getCovnersionMultiple() {
-        return covnersionMultiple;
+    public BigDecimal getConversionMultiple() {
+        return conversionMultiple;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 }
